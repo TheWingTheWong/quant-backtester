@@ -1,5 +1,7 @@
 # quant-backtester
 
+[![ci](https://github.com/TheWingTheWong/quant-backtester/actions/workflows/ci.yml/badge.svg)](https://github.com/TheWingTheWong/quant-backtester/actions/workflows/ci.yml)
+
 A vectorized backtesting engine for daily trading strategies, written in Python
 with numpy and pandas. It simulates a portfolio that trades toward target
 weights, accounts for weight drift between rebalances, charges commission,
