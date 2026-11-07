@@ -20,6 +20,7 @@ class SMACrossover(Strategy):
     Capital is split equally across assets.
     """
 
+    title = "SMA crossover"
     description = "Moving-average crossover (fast SMA vs slow SMA)"
 
     fast: int = 20
@@ -59,6 +60,7 @@ class TimeSeriesMomentum(Strategy):
     equally across assets and capped at ``max_leverage`` gross.
     """
 
+    title = "Time-series momentum"
     description = "Time-series momentum with per-asset volatility scaling"
 
     lookback: int = 252

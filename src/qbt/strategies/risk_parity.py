@@ -22,6 +22,7 @@ class VolTargetRiskParity(Strategy):
     ``max_leverage`` gross. Best paired with weekly or monthly rebalancing.
     """
 
+    title = "Risk parity, vol-targeted"
     description = "Inverse-vol risk parity with a portfolio volatility target"
 
     vol_lookback: int = 60

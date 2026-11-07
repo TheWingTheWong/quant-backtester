@@ -14,6 +14,7 @@ from qbt.strategies.base import Strategy, register
 class EqualWeight(Strategy):
     """Hold every asset at ``1 / n`` of equity, rebalanced by the simulator."""
 
+    title = "Equal weight"
     description = "Equal-weight allocation (baseline)"
 
     leverage: float = 1.0

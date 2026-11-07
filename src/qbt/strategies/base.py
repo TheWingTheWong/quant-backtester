@@ -48,6 +48,7 @@ class Strategy(ABC):
     """
 
     key: ClassVar[str] = ""
+    title: ClassVar[str] = ""
     description: ClassVar[str] = ""
 
     @property

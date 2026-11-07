@@ -32,6 +32,7 @@ class BollingerMeanReversion(Strategy):
     and exits become sparse events and a forward fill holds the state.
     """
 
+    title = "Bollinger mean reversion"
     description = "Bollinger-band / z-score mean reversion with hysteresis"
 
     lookback: int = 20
