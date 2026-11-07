@@ -62,6 +62,7 @@ class TimeSeriesMomentum(Strategy):
 
     title = "Time-series momentum"
     description = "Time-series momentum with per-asset volatility scaling"
+    default_rebalance = "W"
 
     lookback: int = 252
     skip: int = 21

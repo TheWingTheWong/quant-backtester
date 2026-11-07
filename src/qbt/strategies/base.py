@@ -50,6 +50,8 @@ class Strategy(ABC):
     key: ClassVar[str] = ""
     title: ClassVar[str] = ""
     description: ClassVar[str] = ""
+    default_rebalance: ClassVar[str] = "D"
+    """Rebalance frequency the CLI uses unless told otherwise."""
 
     @property
     def name(self) -> str:

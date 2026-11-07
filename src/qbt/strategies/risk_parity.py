@@ -24,6 +24,7 @@ class VolTargetRiskParity(Strategy):
 
     title = "Risk parity, vol-targeted"
     description = "Inverse-vol risk parity with a portfolio volatility target"
+    default_rebalance = "W"
 
     vol_lookback: int = 60
     target_vol: float = 0.10
