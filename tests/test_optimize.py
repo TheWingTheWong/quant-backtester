@@ -48,7 +48,11 @@ def test_walk_forward_folds_are_contiguous_and_out_of_sample(prices):
 
 def test_walk_forward_anchored_starts_at_first_bar(prices):
     result = walk_forward(
-        SMACrossover, prices, {"fast": [10], "slow": [50]}, train_bars=504, test_bars=252,
+        SMACrossover,
+        prices,
+        {"fast": [10], "slow": [50]},
+        train_bars=504,
+        test_bars=252,
         anchored=True,
     )
     assert all(f.train_start == prices.index[0] for f in result.folds)

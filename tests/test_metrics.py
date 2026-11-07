@@ -87,8 +87,13 @@ def test_empty_series_is_safe():
 
 @pytest.mark.parametrize(
     ("key", "value", "text"),
-    [("cagr", 0.1234, "12.34%"), ("sharpe", 1.234, "1.23"), ("max_dd_duration", 41.6, "42"),
-     ("sharpe", -0.001, "0.00"), ("profit_factor", float("inf"), "inf")],
+    [
+        ("cagr", 0.1234, "12.34%"),
+        ("sharpe", 1.234, "1.23"),
+        ("max_dd_duration", 41.6, "42"),
+        ("sharpe", -0.001, "0.00"),
+        ("profit_factor", float("inf"), "inf"),
+    ],
 )
 def test_format_metric(key, value, text):
     assert m.format_metric(key, value) == text

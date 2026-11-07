@@ -129,7 +129,7 @@ def test_rebalance_mask_month_end_and_interval():
 def test_assets_without_prices_get_no_weight():
     index = pd.bdate_range("2024-01-01", periods=10)
     prices = pd.DataFrame({"A": np.linspace(100, 110, 10), "B": np.nan}, index=index)
-    prices.loc[index[5]:, "B"] = np.linspace(50, 55, 5)
+    prices.loc[index[5] :, "B"] = np.linspace(50, 55, 5)
     weights = pd.DataFrame(0.5, index=index, columns=["A", "B"])
     result = simulate(prices, weights, costs=CostModel.zero())
     assert (result.weights["B"].iloc[:5] == 0).all()
