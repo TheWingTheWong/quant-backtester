@@ -229,7 +229,9 @@ def format_metric(key: str, value: float) -> str:
     if np.isinf(value):
         return "inf"
     if kind == "pct":
-        return f"{value * 100:.2f}%"
-    if kind == "int":
-        return f"{int(round(value))}"
-    return f"{value:.2f}"
+        text = f"{value * 100:.2f}%"
+    elif kind == "int":
+        text = f"{int(round(value))}"
+    else:
+        text = f"{value:.2f}"
+    return text[1:] if text.startswith("-") and not any(ch in "123456789" for ch in text) else text
