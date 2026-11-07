@@ -243,10 +243,10 @@ result = run_backtest(
     costs=CostModel(commission_bps=1, slippage_bps=2),
     rebalance="W",
 )
-result.metrics()["sharpe"]   # 0.53
-result.equity                # equity curve in currency units
-result.weights               # end-of-bar weights after drift and trades
-result.turnover              # one-way turnover per bar
+result.metrics()["sharpe"]  # 0.53
+result.equity  # equity curve in currency units
+result.weights  # end-of-bar weights after drift and trades
+result.turnover  # one-way turnover per bar
 ```
 
 A strategy is a dataclass with a `generate_weights(prices) -> weights` method.
