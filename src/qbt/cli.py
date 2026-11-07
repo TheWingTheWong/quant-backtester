@@ -187,6 +187,22 @@ def _rebalance(args: argparse.Namespace, cls: type[Strategy]) -> str | int:
     return int(value) if str(value).isdigit() else value
 
 
+def _param_phrase(name: str, value: Any) -> str:
+    if name == "allow_short":
+        return "long/short" if value else "long only"
+    label = name.replace("_", " ")
+    if isinstance(value, bool):
+        return label if value else f"no {label}"
+    return f"{label} {value:g}" if isinstance(value, float) else f"{label} {value}"
+
+
+def _rebalance_phrase(rebalance: str | int) -> str:
+    names = {"D": "daily", "W": "weekly", "M": "monthly", "Q": "quarterly", "Y": "yearly"}
+    if isinstance(rebalance, int):
+        return f"every-{rebalance}-bar"
+    return names.get(str(rebalance).upper(), str(rebalance))
+
+
 def _describe_params(strategy: Strategy) -> str:
     return " ".join(f"{k}={v}" for k, v in strategy.params.items())
 
@@ -285,7 +301,13 @@ def cmd_run(args: argparse.Namespace) -> int:
             settings["Vol target overlay"] = f"{args.overlay_vol:.0%}"
         if args.overlay_leverage:
             settings["Max gross leverage"] = f"{args.overlay_leverage:g}x"
-        subtitle = " · ".join(f"{k.replace('_', ' ')} {v}" for k, v in strategy.params.items())
+        subtitle = " · ".join(
+            [
+                *(_param_phrase(k, v) for k, v in strategy.params.items()),
+                f"{_rebalance_phrase(rebalance)} rebalance",
+                f"{costs.commission_bps + costs.slippage_bps:g} bps per trade",
+            ]
+        )
         path = write_tearsheet(result, out, title=cls.title, subtitle=subtitle, settings=settings)
         print(f"\nTearsheet written to {path}", file=sys.stderr if args.json else sys.stdout)
     return 0
