@@ -204,9 +204,10 @@ def load_csv(path: str | Path, date_column: str | None = None) -> pd.DataFrame:
     raw = raw.set_index(date_column)
     lowered.pop(date_column, None)
 
-    if set(lowered.values()) & {"close", "adj close", "adj_close", "adjclose"} and set(
-        lowered.values()
-    ) <= _OHLCV:
+    if (
+        set(lowered.values()) & {"close", "adj close", "adj_close", "adjclose"}
+        and set(lowered.values()) <= _OHLCV
+    ):
         for wanted in _CLOSE_COLUMNS:
             match = next((c for c, low in lowered.items() if low == wanted), None)
             if match is not None:

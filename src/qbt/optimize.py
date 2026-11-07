@@ -146,9 +146,7 @@ def walk_forward(
         raise ValueError("train_bars must be >= 2 and test_bars >= 1")
     n = len(prices)
     if n < train_bars + test_bars:
-        raise ValueError(
-            f"need at least {train_bars + test_bars} bars for one fold, got {n}"
-        )
+        raise ValueError(f"need at least {train_bars + test_bars} bars for one fold, got {n}")
 
     index = prices.index
     folds: list[Fold] = []
